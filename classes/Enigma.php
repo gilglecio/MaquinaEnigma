@@ -3,22 +3,10 @@
 class Enigma
 {
 	/**
-	 * Rotor 1 initial value
-	 * @var integer
+	 * Rotors init
+	 * @var array
 	 */
-	public $initRotorOne;
-
-	/**
-	 * Rotor 2 initial value
-	 * @var integer
-	 */
-	public $initRotorTwo;
-
-	/**
-	 * Rotor 3 initial value
-	 * @var integer
-	 */
-	public $initRotorThree;
+	public $initRotors = [];
 
 	/**
 	 * Alphabet
@@ -33,22 +21,10 @@ class Enigma
 	private $plugs = [];
 
 	/**
-	 * Rotor one alphabet
+	 * Rotors alphabet
 	 * @var array
 	 */
-	private $rotorOne = [];
-
-	/**
-	 * Rotor one alphabet
-	 * @var array
-	 */
-	private $rotorTwo = [];
-
-	/**
-	 * Rotor one alphabet
-	 * @var array
-	 */
-	private $rotorThree = [];
+	private $rotors = [];
 
 	/**
 	 * Initialize rotores
@@ -57,11 +33,10 @@ class Enigma
 	 * @param array $rotorTwo  
 	 * @param array $rotorThree
 	 */
-	public function __construct($rotorOne = [], $rotorTwo = [], $rotorThree = [])
+	public function __construct(array $initRotors, $rotors = [])
 	{
-		$this->setRotorOne($rotorOne);
-		$this->setRotorTwo($rotorTwo);
-		$this->setRotorThree($rotorThree);
+		$this->initRotors = $initRotors;
+		$this->setRotors($rotors);
 	}
 
 	/**
@@ -75,34 +50,18 @@ class Enigma
 		$this->plugs[$char2] = $char1;
 	}
 
-	public function setRotorOne(array $rotor)
+	public function setRotors(array $rotors)
 	{
-		$this->rotorOne = count($rotor) > 0 ? $rotor : $this->generateRotor();
+		$this->rotors = count($rotors) > 0 ? $rotors : $this->generateRotors();
 	}
 
-	public function setRotorTwo(array $rotor)
+	public function getRotors($key = null)
 	{
-		$this->rotorTwo = count($rotor) > 0 ? $rotor : $this->generateRotor();
-	}
+		if ( ! is_null($key)) {
+			return $this->rotors[$key];
+		}
 
-	public function setRotorThree(array $rotor)
-	{
-		$this->rotorThree = count($rotor) > 0 ? $rotor : $this->generateRotor();
-	}
-
-	public function getRotorOne()
-	{
-		return $this->rotorOne;
-	}
-
-	public function getRotorTwo()
-	{
-		return $this->rotorTwo;
-	}
-
-	public function getRotorThree()
-	{
-		return $this->rotorThree;
+		return $this->rotors;
 	}
 
 	public function getRandChar()
@@ -128,14 +87,37 @@ class Enigma
 		return $chars;
 	}
 
-	public function generateRotor()
+	public function generateRotors()
 	{
-		return $this->getChars();
+		$rotors = [];
+
+		for ($i=0; $i < count($this->initRotors); $i++) { 
+			$rotors[] = $this->getChars();
+		}
+
+		return $rotors;
 	}
 
 	public function getIndByChar($char, $rotor)
 	{
 		return array_search($char, $rotor);
+	}
+
+	public function getCharByPlugs($char)
+	{
+		if ( ! count($this->plugs)) {
+			return $char;
+		}
+		
+		if ($search = array_search($char, $this->plugs)) {
+			return $search;
+		}
+		
+		if (in_array($char, array_keys($this->plugs))) {
+			return $this->plugs[$char];
+		}
+
+		return $char;
 	}
 
 	public function getMath($charInput, $initRotorOne, $initRotorTwo, array $rotorTwo)
@@ -168,45 +150,25 @@ class Enigma
 		return $rotorTwo[$match];
 	}
 
-	public function getCharByPlugs($char)
-	{
-		if ( ! count($this->plugs)) {
-			return $char;
-		}
-		
-		if ($search = array_search($char, $this->plugs)) {
-			return $search;
-		}
-		
-		if (in_array($char, array_keys($this->plugs))) {
-			return $this->plugs[$char];
-		}
-
-		return $char;
-	}
-
 	public function encode($charInput) 
 	{
 		$charInput = $this->getCharByPlugs($charInput);
-		$charIndice = $this->getIndByChar($charInput, $this->getRotorOne());
 
-		$charMatch = $this->getMath($charIndice, $this->initRotorOne, $this->initRotorTwo, $this->getRotorTwo());
+		for ($i=0; $i < count($this->initRotors)-1; $i++) {
+			$charIndice = $this->getIndByChar($charInput, $this->getRotors($i));
+			$charInput = $this->getMath($charIndice, $this->initRotors[$i], $this->initRotors[$i+1], $this->getRotors($i+1));
+		}
 		
-		$indiceCharRotorTwo = $this->getIndByChar($charMatch, $this->getRotorTwo());
-
-		$charMatch = $this->getMath($indiceCharRotorTwo, $this->initRotorTwo, $this->initRotorThree, $this->getRotorThree());
-		
-		return $charMatch;
+		return $charInput;
 	}
 
 	public function decode($charInput)
 	{
-		$charIndice = $this->getIndByChar($charInput, $this->getRotorThree());
-
-		$charMatch = $this->getMath($charIndice, $this->initRotorThree, $this->initRotorTwo, $this->getRotorTwo());
-		$indiceCharRotorTwo = $this->getIndByChar($charMatch, $this->getRotorTwo());
-
-		$charOutput = $this->getMath($indiceCharRotorTwo, $this->initRotorTwo, $this->initRotorOne, $this->getRotorOne());
+		for ($i = (count($this->initRotors) - 1); $i > 0; $i--) {
+		
+			$charIndice = $this->getIndByChar($charInput, $this->getRotors($i));
+			$charInput = $this->getMath($charIndice, $this->initRotors[$i], $this->initRotors[$i-1], $this->getRotors($i-1));
+		}
 		
 		$charOutput = $this->getCharByPlugs($charOutput);
 

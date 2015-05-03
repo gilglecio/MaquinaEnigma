@@ -1,6 +1,8 @@
 <?php 
 	ob_start();
 	session_start();
+
+	$rotors = [5,6,12];
 ?>
 <!DOCTYPE HTML>
 <html lang="pt-BR">
@@ -17,9 +19,9 @@
 			<div class="line">
 				<div class="descrip">Descriptografar <input type="checkbox" id="decript" /></div>
 				<div class="rotores">
-					<label>Rotor 3 <input type="text" name="rotor3" id="r3" value="5"/></label>
-					<label>Rotor 2 <input type="text" name="rotor3" id="r2" value="8"/></label>
-					<label>Rotor 1 <input type="text" name="rotor3" id="r1" value="22"/></label>
+					<?php foreach (array_reverse($rotors, true) as $key => $value): ?>
+					<label>Rotor <?php echo $key+1 ?> <input type="text" name="rotor<?php echo $key+1 ?>" id="r<?php echo $key+1 ?>" value="<?php echo $value ?>"/></label>
+					<?php endforeach ?>
 				</div>
 			</div>
 
@@ -35,19 +37,7 @@
 				?>
 			</div>
 
-			<div class="line">
-				<pre>
-					<?php
-						/*require_once('classes/Enigma.php');
-						$enigma = new Enigma();
-						$_SESSION['r1'] = $enigma->getRotorOne();
-						$_SESSION['r2'] = $enigma->getRotorTwo();
-						$_SESSION['r3'] = $enigma->getRotorThree();
-
-						print_r($_SESSION);*/
-					?>
-				</pre>
-			</div>
+			<p id="rotors" data-rotors="<?php echo json_encode($rotors) ?>"></p>
 			<div style="clear:both;"></div>
 		</div>
 	</body>
