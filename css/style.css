@@ -1,0 +1,72 @@
+*{margin:0; padding:0; box-sizing:border-box;}
+a{text-decoration:none;}
+
+body{background:#333;}
+div#enigma_box{
+	margin:50px auto;
+	padding:10px;
+	width:600px;
+	background:linear-gradient(to bottom, #fff, #ccc);
+	border-radius:8px;
+}
+div#enigma_box div.line{float:left; width:100%; margin-bottom:15px;}
+
+.rotores{
+	float:left;
+	width:65%;
+	margin-right:1%;
+}
+.rotores label{
+	float:left;
+	width:33.33%;
+	font-size:18px;
+	font-family: "Trebuchet MS", tahoma;
+}
+.rotores label input{
+	float:left;
+	width:96%;
+	padding:5px;
+	background:#fff;
+	border:1px solid #666;
+}
+.descrip{
+	float:right;
+	width:34%;
+	font-size:18px;
+	font-family:"Trebuchet MS", tahoma;
+	color:#666;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+
+
+/*Resultado*/
+span#result{
+	float:left;
+	padding:10px;
+	width:100%;
+	background:#fff;
+	border:1px solid #666;
+	font-size:19px;
+	font-family:Tahoma, Arial;
+	color:#666;
+}
+span#result span.resultado{font-weight:bold; text-transform: uppercase;}
+
+.letra{
+	float:left;
+	width:36px;
+	text-align:center;
+	vertical-align: middle;
+	font:18px Tahoma, arial;
+	color:white;
+	font-weight:bold;
+	background:#069;
+
+	line-height:36px;
+	border-radius:50%;
+	margin-right:5px;
+	margin-bottom:10px;
+}
+.letra:hover{background:#036;}
+.line.last{margin-bottom:0;}
