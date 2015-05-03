@@ -38,13 +38,13 @@
 			<div class="line">
 				<pre>
 					<?php
-						/*require_once('classes/Enigma.class.php');
+						/*require_once('classes/Enigma.php');
 						$enigma = new Enigma();
-						$_SESSION['r1'] = $enigma->getRotorUm();
-						$_SESSION['r2'] = $enigma->getRotorDois();
-						$_SESSION['r3'] = $enigma->getRotorTres();*/
+						$_SESSION['r1'] = $enigma->getRotorOne();
+						$_SESSION['r2'] = $enigma->getRotorTwo();
+						$_SESSION['r3'] = $enigma->getRotorThree();
 
-						print_r($_SESSION);
+						print_r($_SESSION);*/
 					?>
 				</pre>
 			</div>
