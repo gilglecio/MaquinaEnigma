@@ -16,15 +16,15 @@
 		$enigma->configuracaoRotorDois = $r2;
 		$enigma->configuracaoRotorTres = $r3;
 
-		$enigma->addPlug('i', 'c');
+		$enigma->addPlug('a', 'c');
 		$enigma->addPlug('d', 'y');
 		$enigma->addPlug('x', 'k');
 		$enigma->addPlug('u', 'w');
-		$enigma->addPlug('z', 'a');
-		$enigma->addPlug('j', 'l');
-		$enigma->addPlug('f', 'e');
+		$enigma->addPlug('z', 'i');
+		$enigma->addPlug('j', 'g');
+		$enigma->addPlug('s', 'l');
 		$enigma->addPlug('q', 'b');
-		$enigma->addPlug('g', 's');
+		$enigma->addPlug('e', 'f');
 		$enigma->addPlug('h', 'm');
 
 		if($decodificar == 0){

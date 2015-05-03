@@ -17,9 +17,9 @@
 			<div class="line">
 				<div class="descrip">Descriptografar <input type="checkbox" id="decript" /></div>
 				<div class="rotores">
-					<label>Rotor 3 <input type="text" name="rotor3" id="r3" value="5"/></label>
-					<label>Rotor 2 <input type="text" name="rotor3" id="r2" value="8"/></label>
-					<label>Rotor 1 <input type="text" name="rotor3" id="r1" value="22"/></label>
+					<label>Rotor 3 <input type="text" name="rotor3" id="r3" value="12"/></label>
+					<label>Rotor 2 <input type="text" name="rotor3" id="r2" value="5"/></label>
+					<label>Rotor 1 <input type="text" name="rotor3" id="r1" value="4"/></label>
 				</div>
 			</div>
 
