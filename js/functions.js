@@ -3,9 +3,20 @@ $(function(){
 
 		var letraClicada = $(this).attr('id');
 
-		var r1 = Number($('#r1').val());
+		/*var r1 = Number($('#r1').val());
 		var r2 = Number($('#r2').val());
-		var r3 = Number($('#r3').val());
+		var r3 = Number($('#r3').val());*/
+
+		var rotores = [];
+
+		
+		$('.inputRotor').each(function(i, rotor){
+			rotores.push(Number($(rotor).val()));
+			
+		});
+		rotores.reverse();
+		console.log(rotores);
+		
 
 		var decript = $('#decript').prop('checked');
 		
@@ -15,29 +26,24 @@ $(function(){
 			var decodificar = 0;
 		}
 
-		r1++;
-		if(r1 == 26){
-			r1 = 0;
-			r2++;
-			if(r2 == 26){
-				r2 = 0;
-				r3++;
-				if(r3 == 26){
-					r3 = 0;
+		function recursivo(rotor){
+			if(!rotor)
+				rotor = 0;
+			if(typeof rotores[rotor] != 'undefined'){
+				if(rotores[rotor] == 26){
+					rotores[rotor] = 1;
+					recursivo(rotor+1);
+				}else{
+					rotores[rotor] += 1;
 				}
+				$('#r'+(rotor+1)).val(rotores[rotor]);
 			}
 		}
-
-		$('#r1').val(r1);
-		$('#r2').val(r2);
-		$('#r3').val(r3);
+		recursivo();
 
 		$.post('sys/codifica_decodifica.php', {
 			decodificar: decodificar,
 			initRotors: $.parseJSON($('[data-rotors]').attr('data-rotors')),
-			r1: r1,
-			r2: r2,
-			r3: r3,
 			letraClicada: letraClicada
 		},function(retorno){
 			$('span.resultado').append(retorno);

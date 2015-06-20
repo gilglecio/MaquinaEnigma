@@ -2,6 +2,7 @@
 	ob_start();
 	session_start();
 
+	//$rotors = [5,6,12,8,7,10,15,2,9,1];
 	$rotors = [5,6,12];
 ?>
 <!DOCTYPE HTML>
@@ -20,7 +21,7 @@
 				<div class="descrip">Descriptografar <input type="checkbox" id="decript" /></div>
 				<div class="rotores">
 					<?php foreach (array_reverse($rotors, true) as $key => $value): ?>
-					<label>Rotor <?php echo $key+1 ?> <input type="text" name="rotor<?php echo $key+1 ?>" id="r<?php echo $key+1 ?>" value="<?php echo $value ?>"/></label>
+					<label>Rotor <?php echo $key+1 ?> <input type="text" name="rotor<?php echo $key+1 ?>" id="r<?php echo $key+1 ?>" value="<?php echo $value ?>" class="inputRotor"/></label>
 					<?php endforeach ?>
 				</div>
 			</div>
