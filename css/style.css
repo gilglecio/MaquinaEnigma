@@ -68,5 +68,6 @@ span#result span.resultado{font-weight:bold; text-transform: uppercase;}
 	margin-right:5px;
 	margin-bottom:10px;
 }
-.letra:hover{background:#036;}
+.letra:hover,
+.letra.click{background:#036;}
 .line.last{margin-bottom:0;}
