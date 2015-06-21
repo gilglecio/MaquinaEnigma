@@ -1,8 +1,10 @@
-<?php 
+<?php
 	ob_start();
 	session_start();
 
-	$rotors = [5,6,12,8,7,10,15,2,9,1,5,6,12,8,7,10,15,2,9,1, 5,6,12,8,7,10,15,2,9,1, 5,6,12,8,7,10,15,2,9,1];
+	include 'classes/Enigma.php';
+
+	$rotors = [5,6,12];
 	//$rotors = [5,6,12];
 ?>
 <!DOCTYPE HTML>
@@ -27,16 +29,18 @@
 			</div>
 
 			<div class="line">
-				<span id="result">Resultado: <span class="resultado"></span></span>
+				<textarea id="text" placeholder="Texto" style="width:100%" rows="7"></textarea>
 			</div>
 			<div class="line last">
 				<?php
-					$abc = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+					$abc = Enigma::$alphabet;
 					for($i = 0; $i<=count($abc)-1; $i++){
 						echo '<a href="#" class="letra" id="'.$abc[$i].'">'.strtoupper($abc[$i]).'</a>';
 					}
 				?>
 			</div>
+
+			<button id="iniciar">Iniciar</button>
 
 			<p id="rotors" data-rotors="<?php echo json_encode($rotors) ?>"></p>
 			<div style="clear:both;"></div>
