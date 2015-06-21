@@ -90,7 +90,6 @@ class Enigma
 	public function generateRotors()
 	{
 		$rotors = [];
-		die(count($this->initRotors));
 
 		for ($i=0; $i < count($this->initRotors); $i++) { 
 			$rotors[] = $this->getChars();

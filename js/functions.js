@@ -1,5 +1,6 @@
 $(function(){
-	$('a.letra').on('click', function() {
+	$('a.letra').on('click', function(e) {
+		e.preventDefault();
 
 		var letraClicada = $(this).attr('id');
 
@@ -43,10 +44,11 @@ $(function(){
 
 		$.post('sys/codifica_decodifica.php', {
 			decodificar: decodificar,
-			initRotors: $.parseJSON($('[data-rotors]').attr('data-rotors')),
+			initRotors: rotores,
 			letraClicada: letraClicada
 		},function(retorno){
 			$('span.resultado').append(retorno);
 		});
+		return false;
 	});
 });
