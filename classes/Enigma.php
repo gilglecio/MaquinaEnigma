@@ -170,7 +170,7 @@ class Enigma
 			$charInput = $this->getMath($charIndice, $this->initRotors[$i], $this->initRotors[$i-1], $this->getRotors($i-1));
 		}
 		
-		$charOutput = $this->getCharByPlugs($charOutput);
+		$charOutput = $this->getCharByPlugs($charInput);
 
 		return $charOutput;
 	}

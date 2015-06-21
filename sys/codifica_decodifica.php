@@ -14,11 +14,6 @@ if(isset($_POST['decodificar'])){
 	} else {
 		$Enigma->setRotors($_SESSION['rotors']);
 	}
-
-	$r1 = $_POST['r1'];
-	$r2 = $_POST['r2'];
-	$r3 = $_POST['r3'];
-
 	$letraClicada = $_POST['letraClicada'];
 	$decodificar = $_POST['decodificar'];
 
