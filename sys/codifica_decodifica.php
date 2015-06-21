@@ -17,20 +17,20 @@ if(isset($_POST['decodificar'])){
 	$letraClicada = $_POST['letraClicada'];
 	$decodificar = $_POST['decodificar'];
 
-	$Enigma->addPlug('A', 'C');
-	$Enigma->addPlug('D', 'Y');
-	$Enigma->addPlug('X', 'K');
-	$Enigma->addPlug('U', 'W');
-	$Enigma->addPlug('Z', 'I');
-	$Enigma->addPlug('J', 'G');
-	$Enigma->addPlug('S', 'L');
-	$Enigma->addPlug('Q', 'B');
-	$Enigma->addPlug('E', 'F');
-	$Enigma->addPlug('H', 'M');
+	$Enigma->addPlug('a', 'c');
+	$Enigma->addPlug('d', 'y');
+	$Enigma->addPlug('x', 'k');
+	$Enigma->addPlug('u', 'w');
+	$Enigma->addPlug('z', 'i');
+	$Enigma->addPlug('j', 'g');
+	$Enigma->addPlug('s', 'l');
+	$Enigma->addPlug('q', 'b');
+	$Enigma->addPlug('e', 'f');
+	$Enigma->addPlug('h', 'm');
 
 	if($decodificar == 0){
-		echo strtoupper($Enigma->encode($letraClicada));
+		echo  $Enigma->encode($letraClicada);
 	}else{
-		echo strtoupper($Enigma->decode($letraClicada));
+		echo $Enigma->decode($letraClicada);
 	}
 }

@@ -3,9 +3,10 @@ $(function(){
 	var current = 0;
 	var text = '';
 	var chars = [];
+	var spaces = [];
 
 	function convertToSlug(Text) {
-    	return Text.toUpperCase().replace(/[^\w -]+/g,'');
+    	return Text.toLowerCase().replace(/[^\w -]+/g,'');
 	}
 
 	$('#decript').on('click', function () {
@@ -31,15 +32,17 @@ $(function(){
 		$('#text').val(text);
 
 		for(c in text) {
-			chars.push(text[c]);
+			if (text[c] == ' ') {
+				spaces[c] = c;
+			} else {
+				chars[c] = text[c];
+			};
 		};
 
 		$('#' + chars[current]).click();
 	});
 
 	$('a.letra').on('click', function(e) {
-
-		$('a.letra').removeClass('click');
 
 		$(this).addClass('click');
 
@@ -81,13 +84,27 @@ $(function(){
 			}
 		}
 
+		function in_array(valor, array){
+  			for(var i =0; i<array.length;i++){
+   				if(array[i] == valor){
+    				return true;
+    			}
+   			}
+   		}
+
 		recursivo();
 
 		$.post('sys/codifica_decodifica.php', {
 			decodificar: decodificar,
 			initRotors: rotores,
 			letraClicada: letraClicada
-		},function(retorno){
+		},function(retorno) {
+
+			$('a.letra').removeClass('click');
+
+			if (in_array(current-1, Object.keys(spaces))) {
+				chars[current-1] = ' ';
+			};
 
 			chars[current] = retorno;
 
@@ -97,6 +114,8 @@ $(function(){
 
 			if (chars[current]) {
 				$('#' + chars[current]).click();	
+			} else if (chars[++current]) {
+				$('#' + chars[current]).click();
 			};
 
 		});
