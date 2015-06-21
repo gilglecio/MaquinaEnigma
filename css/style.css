@@ -1,44 +1,68 @@
 *{margin:0; padding:0; box-sizing:border-box;}
 a{text-decoration:none;}
 
-body{background:#333;}
+body{background:#ebebeb;}
 div#enigma_box{
 	margin:50px auto;
 	padding:10px;
 	width:600px;
-	background:linear-gradient(to bottom, #fff, #ccc);
-	border-radius:8px;
+	background:#fff;
+	border:1px solid #ccc;
 }
 div#enigma_box div.line{float:left; width:100%; margin-bottom:15px;}
-
-.rotores{
+div#enigma_box textarea{
 	float:left;
-	width:65%;
-	margin-right:1%;
+	width:100%;
+	padding:5px;
+	font:16px "Trebuchet MS";
+	color:#666;
+	resize:vertical;
+	outline:none;
+	background:white;
+	border:1px solid #ccc;
+	height:90px;
+}
+div#enigma_box #iniciar{
+	float:left;
+	padding:8px 12px;
+	background:linear-gradient(to bottom, #069, #09f 130%);
+	border:0;
+	font:19px tahoma;
+	color:white;
+}
+div#enigma_box select{
+	padding:5px;
+	background:#fff;
+	font:16px "Trebuchet MS";
+	color:#666;
+	float:right;
+	width:30%;
+	outline:none;
 }
 .rotores label{
 	float:left;
-	width:33.33%;
-	font-size:18px;
-	font-family: "Trebuchet MS", tahoma;
+	width:20%;
+	padding:5px;
+	background:#66CCFF;
+	border:1px solid #fff;
+}
+.rotores label span{
+	float:left;
+	width:100%;
+	font:15px tahoma;
+	color:white;
+	text-transform:uppercase;
+	margin-bottom:7px;
 }
 .rotores label input{
 	float:left;
-	width:96%;
-	padding:5px;
-	background:#fff;
-	border:1px solid #666;
-}
-.descrip{
-	float:right;
-	width:34%;
-	font-size:18px;
-	font-family:"Trebuchet MS", tahoma;
+	width:100%;
+	padding:3px;
+	background:white;
+	font:15px tahoma;
 	color:#666;
-	font-weight:bold;
-	text-transform:uppercase;
+	outline:none;
 }
-
 
 /*Resultado*/
 span#result{
@@ -71,3 +95,95 @@ span#result span.resultado{font-weight:bold; text-transform: uppercase;}
 .letra:hover,
 .letra.click{background:#036;}
 .line.last{margin-bottom:0;}
+
+.line.controles{
+	background:#ebebeb;
+	padding:5px;
+}
+.line.controles p{
+	float:left;
+	width:auto;
+	line-height:30px;
+	margin-right:10px;
+	font:16px Tahoma;
+	color:#666;
+	font-weight:bold;
+}
+.line.controles p input{
+	float:left;
+	margin-top:5px;
+	margin-right:10px;
+}
+.line.controles input[type=button]{
+	float:right;
+	padding:4px;
+	background:#FF3737;
+	border:0;
+	font:15px Tahoma;
+	color:white;
+}
+.line.controles input[type=button]:hover{cursor:pointer; background:#900;}
+#configura-rotores{
+	padding:8px;
+	background:white;
+	border:1px solid #999;
+	width:800px;
+	margin:30px auto;
+}
+#configura-rotores h2{
+	float:left;
+	width:100%;
+	padding:5px;
+	background:#09f;
+	font-family:Tahoma;
+	font-size:18px;
+	text-transform:uppercase;
+	font-weight:normal;
+	color:white;
+	margin-bottom:10px;
+}
+#configura-rotores h2 .more{
+	float:right;
+	padding:3px 8px;
+	font-weight:bold;
+	text-transform:uppercase;
+	color:white;
+	font-size:16px;
+	background:#069;
+}
+#configura-rotores h2 .more:hover{background:#036;}
+#configura-rotores label{
+	float:left;
+	width:33.33%;
+	padding:5px;
+	background:#66CCFF;
+	border:1px solid #fff;
+}
+#configura-rotores label span{
+	float:left;
+	text-transform:uppercase;
+	color:#fff;
+	width:100%;
+	margin-bottom:6px;
+}
+#configura-rotores label input{
+	outline:none;
+	width:100%;
+	padding:4px;
+	background:white;
+	border:1px solid #09f;
+}
+#configura-rotores .botao{
+	float:left;
+	padding:8px 10px;
+	background:#333;
+	border:0;
+	font:17px Tahoma, arial;
+	color:white;
+	margin-left:1px;
+	margin-top:8px;
+}
+#configura-rotores .botao:hover{
+	cursor:pointer;
+	background:#000;
+}

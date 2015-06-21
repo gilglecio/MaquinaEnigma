@@ -1,5 +1,4 @@
 <?php
-
 ob_start();
 session_start();
 
@@ -16,17 +15,11 @@ if(isset($_POST['decodificar'])){
 	}
 	$letraClicada = $_POST['letraClicada'];
 	$decodificar = $_POST['decodificar'];
-
-	$Enigma->addPlug('a', 'c');
-	$Enigma->addPlug('d', 'y');
-	$Enigma->addPlug('x', 'k');
-	$Enigma->addPlug('u', 'w');
-	$Enigma->addPlug('z', 'i');
-	$Enigma->addPlug('j', 'g');
-	$Enigma->addPlug('s', 'l');
-	$Enigma->addPlug('q', 'b');
-	$Enigma->addPlug('e', 'f');
-	$Enigma->addPlug('h', 'm');
+	if(isset($_SESSION['plugsCriados'])){
+		foreach($_SESSION['plugsCriados'] as $a => $b){
+			$Enigma->addPlug($a, $b);
+		}
+	}
 
 	if($decodificar == 0){
 		echo  $Enigma->encode($letraClicada);
