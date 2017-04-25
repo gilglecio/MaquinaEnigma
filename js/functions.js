@@ -9,6 +9,11 @@ $(function(){
     	return Text.toLowerCase().replace(/[^\w -]+/g,'');
 	}
 
+	function sleep(delay) {
+    	var start = new Date().getTime();
+    	while (new Date().getTime() < start + delay);
+  	}
+
 	$('body').on('click', '#decript', function () {
 		var rotors = $.parseJSON($('#rotors').attr('data-rotors'));
 
@@ -26,8 +31,6 @@ $(function(){
 		
 		text = convertToSlug( $('#text').val()).replace('  ', ' ');
 
-		//console.log('text', text);
-
 		$('#text').val(text);
 
 		for(c in text) {
@@ -44,6 +47,14 @@ $(function(){
 	var pares = [];
 	var jaClicados = [];
 	var i = 0;
+
+	function in_array(valor, array){
+		for(var i =0; i<array.length;i++){
+			if(array[i] == valor){
+				return true;
+			}
+		}
+	}
 
 	function visualizarPlugs(){
 		if(Object.keys(plugsCriados).length > 0){
@@ -127,6 +138,8 @@ $(function(){
 
 			function recursivo(rotor){
 
+				sleep(200)
+
 				if(!rotor)
 					rotor = 0;
 				
@@ -142,14 +155,6 @@ $(function(){
 					$('#r'+(rotor+1)).val(rotores[rotor]);
 				}
 			}
-
-			function in_array(valor, array){
-	  			for(var i =0; i<array.length;i++){
-	   				if(array[i] == valor){
-	    				return true;
-	    			}
-	   			}
-	   		}
 
 			recursivo();
 
